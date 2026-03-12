@@ -6,7 +6,7 @@ COPY . /app
 RUN mvn compile war:war
 
 # Tomcat 10 needs further changes, see https://tomcat.apache.org/migration-10.html
-FROM tomcat:9
+FROM tomcat:9-jdk11
 LABEL maintainer=adrian.gschwend@zazuko.com
 ENV CATALINA_OPTS="-XX:+UseSerialGC"
 COPY --from=builder /app/target/lodview.war /usr/local/tomcat/webapps/lodview.war
